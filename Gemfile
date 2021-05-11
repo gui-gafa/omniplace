@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
 
 gem 'autoprefixer-rails'
 gem 'execjs', '2.7.0'

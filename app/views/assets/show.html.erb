@@ -1,0 +1,11 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @asset.name %>
+</p>
+
+<%= link_to 'DOWNLOAD PDF', asset_path(@asset, format: :pdf), class:'btn btn-primary' %>
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>
