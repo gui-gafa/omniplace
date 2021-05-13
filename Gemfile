@@ -3,8 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+# Bootstrap is truly needed here?
+gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.7'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -19,6 +24,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
+# Using cloudinary gem in prodction
+gem 'cloudinary', '~> 1.16.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -29,15 +36,20 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-gem 'rails_admin', '~> 2.0'
-gem 'wicked_pdf', '~> 1.1'
-gem 'wkhtmltopdf-binary'
+gem 'pundit'
 
 gem 'autoprefixer-rails'
-gem 'execjs', '2.7.0'
 gem 'font-awesome-sass'
 gem 'simple_form'
-group :development, :test do  gem 'pry-byebug'
+gem 'rails_admin', '~> 2.1.1'
+gem 'simple_token_authentication'
+gem 'pg_search', '~> 2.3.0'
+gem 'powerpoint'
+gem 'wicked_pdf', '~>1.4'
+gem 'wkhtmltopdf-binary','~>0.12.4'
+
+group :development, :test do
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
 
@@ -52,6 +64,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 group :test do
