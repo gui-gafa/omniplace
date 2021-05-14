@@ -47,6 +47,7 @@ gem 'pg_search', '~> 2.3.0'
 gem 'powerpoint'
 gem 'wicked_pdf', '~>1.4'
 gem 'wkhtmltopdf-binary','~>0.12.4'
+gem 'activestorage-validator'
 
 group :development, :test do
   gem 'pry-byebug'
