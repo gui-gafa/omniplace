@@ -4,10 +4,27 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :value %>
-    <%= f.input :date %>
-    <%= f.association :taker %>
-    <%= f.association :provider %>
+
+    <div class="d-flex justify-content-around">
+      <%= f.input :description,
+                  as: :text,
+                  label: ('<i class="far fa-edit"></i> Descrição').html_safe,
+                  wrapper_html: { class: "d-flex flex-column"},
+                  input_html: {style: "flex-grow:1;"}
+                  %>
+      <div>
+        <%= f.input :value,
+                    label: "Valor" %>
+        <%= f.input :date,
+                    as: :date,
+                    label: "Data Emprestimo",
+                    html5: true,
+                    order: [:day,:month,:year]
+        %>
+        <%= f.association :taker %>
+        <%= f.association :provider %>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">
