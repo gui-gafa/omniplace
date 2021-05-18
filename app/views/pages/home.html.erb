@@ -1,2 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row mt-5">
+  <div class="col-12 col-md-3">
+    <%=link_to expenses_path, class: "btn" do %>
+      <img src="https://img.icons8.com/cotton/64/000000/transaction-list--v5.png"/>
+      <p>Despesas</p>
+    <%end%>
+  </div>
+  <div class="col-12 col-md-3">
+    <%=link_to expenses_path, class: "btn" do %>
+      <img src="https://img.icons8.com/cotton/64/000000/cash-in-hand.png"/>
+    <p>Empréstimos</p>
+    <%end%>
+  </div>
+</div>

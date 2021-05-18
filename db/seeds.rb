@@ -6,4 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 admin_role = Role.create(:name =>  "admin")
-User.create(email: 'admin@admin', name:"admin", password: 'admin1234', roles: [admin_role])
+puts "admin role created" if admin_role
+puts "admin user created" if User.create(email: 'admin@admin', name:"admin", password: 'admin1234', roles: [admin_role])
