@@ -25,9 +25,10 @@ require("channels")
 
 // External imports
 import "bootstrap";
+require("bootstrap-table");
 // acho q isso não vai funcionar por causa do webpacker
-//= require jquery
-//= require autonumeric
+// = require jquery
+// = require autonumeric
 // import 'autonumeric';
 // import 'jquery';
 // Internal imports, e.g:
