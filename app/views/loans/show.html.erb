@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Value:</strong>
   <%= @loan.value %>
@@ -12,12 +10,17 @@
 
 <p>
   <strong>Taker:</strong>
-  <%= @loan.taker_id %>
+  <%= @loan.taker.name %>
 </p>
 
 <p>
   <strong>Provider:</strong>
-  <%= @loan.provider_id %>
+  <%= @loan.provider.name %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @loan.description %>
 </p>
 
 <%= link_to 'Edit', edit_loan_path(@loan) %> |
