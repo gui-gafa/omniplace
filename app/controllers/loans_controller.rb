@@ -3,7 +3,7 @@ class LoansController < ApplicationController
 
   # GET /loans
   def index
-    @loans = policy_scope(Loan)
+    @loans = policy_scope(Loan).order(:date)
   end
 
   # GET /loans/1
