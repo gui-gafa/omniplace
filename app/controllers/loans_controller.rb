@@ -55,6 +55,6 @@ class LoansController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def loan_params
-      params.require(:loan).permit(:value, :date, :taker_id, :provider_id)
+      params.require(:loan).permit(:description, :value, :date, :taker_id, :provider_id)
     end
 end

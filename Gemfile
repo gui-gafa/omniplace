@@ -48,6 +48,8 @@ gem 'powerpoint'
 gem 'wicked_pdf', '~>1.4'
 gem 'wkhtmltopdf-binary','~>0.12.4'
 gem 'activestorage-validator'
+gem 'autonumeric-rails'
+
 
 group :development, :test do
   gem 'pry-byebug'

@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Loans</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Value</th>
       <th>Date</th>
+      <th>Value</th>
       <th>Taker</th>
       <th>Provider</th>
+      <th>Descrição</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +15,11 @@
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
-        <td><%= loan.value %></td>
         <td><%= loan.date %></td>
-        <td><%= loan.taker_id %></td>
-        <td><%= loan.provider_id %></td>
+        <td><%= loan.value %></td>
+        <td><%= loan.taker.name %></td>
+        <td><%= loan.provider.name %></td>
+        <td><%= loan.description %></td>
         <td><%= link_to 'Show', loan %></td>
         <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
         <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
