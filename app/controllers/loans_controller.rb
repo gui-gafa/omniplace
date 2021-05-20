@@ -4,6 +4,7 @@ class LoansController < ApplicationController
   # GET /loans
   def index
     @loans = policy_scope(Loan).order(:date)
+    @other_users = User.all_except(current_user)
   end
 
   # GET /loans/1

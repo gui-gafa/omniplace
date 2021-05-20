@@ -1,6 +1,6 @@
 <p>
   <strong>Value:</strong>
-  <%= @loan.value %>
+  <%=number_to_currency(@loan.value, delimiter: ".", separator: ",") %>
 </p>
 
 <p>

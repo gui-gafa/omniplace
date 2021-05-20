@@ -1,33 +1,55 @@
 <h1>Empréstimos</h1>
-<div class="table-responsive-xl">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th style="width: 90px;">Date</th>
-        <th>Value</th>
-        <th>Taker</th>
-        <th>Provider</th>
-        <th>Descrição</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @loans.each do |loan| %>
-        <tr>
-          <td><%= date_as_dmy(loan.date) %></td>
-          <td style="width: 1px;white-space: nowrap"><%= loan.value %></td>
-          <td style="width: 1px;white-space: nowrap"><%= loan.taker.name %></td>
-          <td style="width: 1px;white-space: nowrap"><%= loan.provider.name %></td>
-          <td><%= loan.description %></td>
-          <td style="width: 1px;"><%= link_to 'Show', loan %></td>
-          <td style="width: 1px;"><%= link_to 'Edit', edit_loan_path(loan) %></td>
-          <td style="width: 1px;"><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%# Essa parte precisa ser mudada pra uma seleção SQL mais adequada %>
+<% @other_users.each do |user| %>
+  <% loans_taken = @loans.where(taker: user)%>
+  <% loans_provided = @loans.where(provider: user)%>
+  <% total_loans = loans_taken + loans_provided %>
+  <% if total_loans.present? %>
+    <h3 class="mt-2"> <%= user.name %> </h3>
+    <div class="table-responsive-xl">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th style="width: 90px;">Date</th>
+            <th>Value</th>
+            <th>Taker</th>
+            <th>Provider</th>
+            <th>Descrição</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% loans_taken.each do |loan| %>
+            <tr>
+              <td><%= date_as_dmy(loan.date) %></td>
+              <td style="width: 1px;white-space: nowrap"><%= number_to_currency(loan.value, delimiter: ".", separator: ",") %></td>
+              <td style="width: 1px;white-space: nowrap"><%= loan.taker.name %></td>
+              <td style="width: 1px;white-space: nowrap"><%= loan.provider.name %></td>
+              <td><%= loan.description %></td>
+              <td style="width: 1px;"><%= link_to 'Show', loan %></td>
+              <td style="width: 1px;"><%= link_to 'Edit', edit_loan_path(loan) %></td>
+              <td style="width: 1px;"><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+          <% loans_provided.each do |loan| %>
+            <tr>
+              <td><%= date_as_dmy(loan.date) %></td>
+              <td style="width: 1px;white-space: nowrap"><%= number_to_currency(loan.value, delimiter: ".", separator: ",") %></td>
+              <td style="width: 1px;white-space: nowrap"><%= loan.taker.name %></td>
+              <td style="width: 1px;white-space: nowrap"><%= loan.provider.name %></td>
+              <td><%= loan.description %></td>
+              <td style="width: 1px;"><%= link_to 'Show', loan %></td>
+              <td style="width: 1px;"><%= link_to 'Edit', edit_loan_path(loan) %></td>
+              <td style="width: 1px;"><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% saldo = loans_taken.sum(:value) - loans_provided.sum(:value) %>
+      <p><%= saldo > 0 ? "Você deve a #{user.name} #{br_currency(saldo)}" : "#{user.name} deve você a #{br_currency(-saldo)}"  %></p>
+    </div>  
+  <% end %>
+<% end %>
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+<%= link_to 'Novo Empréstimo', new_loan_path %>

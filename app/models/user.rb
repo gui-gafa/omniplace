@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def role?(role)
     roles.any? { |r| r.name.underscore.to_sym == role }
   end
+
+  def self.all_except(user)
+    where.not(id: user)
+  end
 end
