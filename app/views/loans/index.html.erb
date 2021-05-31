@@ -1,13 +1,49 @@
-<h1>Empréstimos</h1>
+<div class="row topbar justify-content-between align-items-center p-3">
+  <h2 style="vertical-align: middle;margin-bottom: 0" >Empréstimos</h2>
+  <div class="actions">
+    <%= link_to 'Novo Empréstimo', new_loan_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<div class="total_balances row p-2">
+  <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+    <div class="font-weight-bold">
+      saldo total
+    </div>
+      <%= br_currency(@saldo_total) %>
+    <div>
+    </div>
+  </div>
+  <div class="col-4 d-flex flex-column justify-content-center align-items-center"
+       style="border-right: 1px solid #ddd; border-left: 1px solid #ddd;">
+    <div class="font-weight-bold">
+      você deve
+    </div>
+      <%= br_currency(@loans_taken) %>
+    <div>
+    </div>
+  </div>
+  <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+    <div class="font-weight-bold">
+      devem a você
+    </div>
+      <%= br_currency(@loans_provided) %>
+    <div>
+    </div>
+  </div>
+</div>
+
 <%# Essa parte precisa ser mudada pra uma seleção SQL mais adequada %>
 <% @other_users.each do |user| %>
-  <% loans_taken = @loans.where(taker: user)%>
-  <% loans_provided = @loans.where(provider: user)%>
+  <%# Observe que é o contrario pois estou falando o other users e não do current user %>
+  <% loans_taken = @loans.where(provider: user)%>
+  <% loans_provided = @loans.where(taker: user)%>
   <% total_loans = loans_taken + loans_provided %>
   <% if total_loans.present? %>
-    <h3 class="mt-2"> <%= user.name %> </h3>
-    <div class="table-responsive-xl">
-      <table class="table table-hover">
+    <%= link_to "#collapse#{user.id}", {class: "btn btn-unactive", 'data-toggle': "collapse" }  do%>
+      <h3 class="mt-2"> <%= user.name %> </h3>
+    <% end %>
+    <div class="table-responsive-xl" >
+      <table class="table table-hover collapse" id="collapse<%= user.id %>"  >
         <thead>
           <tr>
             <th style="width: 90px;">Date</th>
@@ -50,6 +86,7 @@
     </div>  
   <% end %>
 <% end %>
+
 <br>
 
-<%= link_to 'Novo Empréstimo', new_loan_path %>
+

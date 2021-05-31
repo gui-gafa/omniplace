@@ -1,1 +1,26 @@
 // Specific CSS for your home-page
+.container{
+  box-shadow: 0px -11px 17px 3px grey;
+}
+
+.topbar{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+  z-index: 9;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+}
+
+.total_balances{
+  padding: 7px 0 2px;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  color: #999;
+  text-align: center;
+}
+
+.btn-unactive.btn:focus{
+  outline: none;
+  box-shadow: none;
+}
