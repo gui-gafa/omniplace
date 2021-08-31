@@ -5,6 +5,8 @@
   <thead>
     <tr>
       <th>Cód</th>
+      <th>Dy</th>
+      <th>V/VPA</th>
     </tr>
   </thead>
 
@@ -12,6 +14,8 @@
     <% @fiis.each do |fii| %>
       <tr>
         <td> <%= fii.cod %> </td>
+        <td> <%= fii.dy %> </td>
+        <td> <%= fii.v_vpa %> </td>
       </tr>
     <% end %>
   </tbody>

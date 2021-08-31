@@ -5,7 +5,7 @@ class FiiRanksController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
   # GET /fii_ranks
   def index
-    @fiis = scrap
+    @fiis = scrap.sort_by {|e| e.cod}
   end
 
   # # GET /fii_ranks/1
@@ -66,10 +66,17 @@ class FiiRanksController < ApplicationController
       html_doc = Nokogiri::HTML(html_file)
       fiis = []
       html_doc.search("tr").collect do |element|
-        fiis << Fii.new(cod: element.css('td:nth-child(1)').text)
+        cod = element.css('td:nth-child(1)').text.strip
+        dy = element.css('td:nth-child(12)').text.strip.gsub(",",".").to_f
+        vpa = element.css('td:nth-child(19)').text.strip.gsub(",",".").to_f
+        if [cod, dy, vpa].all? {|element| element.present? && element != 0}
+          fiis << Fii.new(cod: cod,
+                          dy: dy,
+                          v_vpa: vpa
+
+          )
+        end
       end
       return fiis
     end
 end
-#table-ranking > tbody > tr:nth-child(1) > td.sorting_1
-#table-ranking > tbody > tr:nth-child(1) > td:nth-child(3)
