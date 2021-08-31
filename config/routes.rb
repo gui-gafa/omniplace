@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fii_ranks, only: [:index]
   resources :expenses
   resources :loans
   resources :assets

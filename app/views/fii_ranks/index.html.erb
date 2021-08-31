@@ -1,0 +1,19 @@
+
+<h1>Fii Ranks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cód</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fiis.each do |fii| %>
+      <tr>
+        <td> <%= fii.cod %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -345,6 +345,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
+  nokogiri
   pg (>= 0.18, < 2.0)
   pg_search (~> 2.3.0)
   powerpoint
