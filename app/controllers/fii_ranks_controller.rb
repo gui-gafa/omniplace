@@ -5,7 +5,7 @@ class FiiRanksController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
   # GET /fii_ranks
   def index
-    @fiis = scrap.sort_by {|e| e.cod}
+    @fiis = Fii.rank(scrap)
   end
 
   # # GET /fii_ranks/1
@@ -65,6 +65,9 @@ class FiiRanksController < ApplicationController
       html_file = URI.open(url).read
       html_doc = Nokogiri::HTML(html_file)
       fiis = []
+      my_fiis = %w(RECT11 VINO11 CPTS11 SDIL11 VGIP11 RECR11 HGRE11 IRDM11 XPLG11 RBRP11 HGRU11 VSLH11)
+      radar_list = %w( KNIP11 AFOF11 RBFF11 BBFI11B FAMB11B XPPR11 TGAR11 MCCI11)
+      liked_list = my_fiis + radar_list
       html_doc.search("tr").collect do |element|
         cod = element.css('td:nth-child(1)').text.strip
         dy = element.css('td:nth-child(12)').text.strip.gsub(",",".").to_f
@@ -77,6 +80,7 @@ class FiiRanksController < ApplicationController
           )
         end
       end
+      fiis.each {|e| e.liked = true if liked_list.include? e.cod }
       return fiis
     end
 end

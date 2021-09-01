@@ -1,21 +1,34 @@
-
 <h1>Fii Ranks</h1>
 
 <table>
   <thead>
     <tr>
+
+      <th></th>
+      <th>#</th>
       <th>Cód</th>
       <th>Dy</th>
       <th>V/VPA</th>
+      <th>DY Rank</th>
+      <th>V/VPA Rank</th>
+
     </tr>
   </thead>
 
   <tbody>
-    <% @fiis.each do |fii| %>
+    <% @fiis.each_with_index do |fii, index| %>
       <tr>
+        <td>
+          <% if fii.liked %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+        </td>
+        <td> <%= index + 1 %> </td>
         <td> <%= fii.cod %> </td>
         <td> <%= fii.dy %> </td>
         <td> <%= fii.v_vpa %> </td>
+        <td> <%= fii.dy_rank %> </td>
+        <td> <%= fii.v_vpa_rank %> </td>
       </tr>
     <% end %>
   </tbody>
