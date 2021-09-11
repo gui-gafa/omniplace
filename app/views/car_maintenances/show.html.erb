@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @car_maintenance.value %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @car_maintenance.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @car_maintenance.date %>
+</p>
+
+<p>
+  <strong>Warranty:</strong>
+  <%= @car_maintenance.warranty %>
+</p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @car_maintenance.car.name %>
+</p>
+
+<%= link_to 'Edit', edit_car_maintenance_path(@car_maintenance) %> |
+<%= link_to 'Back', car_maintenances_path %>

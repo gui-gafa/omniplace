@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :car_maintenances
+  resources :cars
   resources :fii_ranks, only: [:index]
   resources :expenses
   resources :loans

@@ -10,6 +10,9 @@
   </div>
 
   <div class="form-actions">
-    <%%= f.button :submit %>
+    <span class='d-flex' style="justify-content: space-between;">
+      <%%= f.submit 'Concluído', class: 'btn btn-primary mr-0' %>
+      <%%= link_to 'Voltar', :back, class: 'btn btn-primary mr-0'%>
+    </span>
   </div>
 <%% end %>
