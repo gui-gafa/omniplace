@@ -25,5 +25,8 @@
   <%= @car_maintenance.car.name %>
 </p>
 
+<% @car_maintenance.documents.each do |document| %>
+  <%= link_to document.filename, rails_blob_path(document, disposition: "preview"), class: "btn btn-info", target: "_blank"%>
+<% end if @car_maintenance.documents.attached?%>
 <%= link_to 'Edit', edit_car_maintenance_path(@car_maintenance) %> |
 <%= link_to 'Back', car_maintenances_path %>

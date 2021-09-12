@@ -55,6 +55,6 @@ class CarMaintenancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def car_maintenance_params
-      params.require(:car_maintenance).permit(:value, :description, :date, :warranty, :car_id)
+      params.require(:car_maintenance).permit(:value, :description, :date, :warranty, :car_id, documents: [])
     end
 end

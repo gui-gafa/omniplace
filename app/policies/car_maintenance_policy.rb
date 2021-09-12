@@ -12,10 +12,10 @@
       true
     end
     def update?
-      user.role? :admin 
+      (record.car.user == user) || (user.role? :admin)
     end
     def destroy?
-      user.role? :admin
+      (record.car.user == user) || (user.role? :admin)
     end
   end
     

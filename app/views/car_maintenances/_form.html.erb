@@ -10,7 +10,24 @@
     <%= f.input :warranty %>
     <%= f.association :car %>
   </div>
-
+  <div class="d-flex justify-content-between align-items-center">
+    <% if @car_maintenance.documents.attached? %>
+      <% @car_maintenance.documents.each do |doc| %>
+        <span>
+          Documento anexado: <%= link_to doc.filename, rails_blob_path(doc, disposition: "preview"), class: "btn btn-link", target: "_blank" %>
+        </span>
+      <% end %>
+      <div class="d-flex align-items-center">
+        <%= f.input :remove_document, as: :boolean, label: "Deseja Remover?", wrapper_html: {style: "margin-bottom:0"} %>
+      </div>
+      Deseja substituir?
+    <% else %>
+      Documento:
+    <% end %>
+    <div class="w-25">
+      <%= f.input :documents, as: :file, label: false, input_html: { multiple: true }%>
+    </div>
+  </div>
   <div class="form-actions">
     <span class='d-flex' style="justify-content: space-between;">
       <%= f.submit 'Concluído', class: 'btn btn-primary mr-0' %>
