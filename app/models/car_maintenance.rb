@@ -1,7 +1,7 @@
 class CarMaintenance < ApplicationRecord
   belongs_to :car
   has_many_attached :documents
-  attr_accessor :remove_document, :boolean
+  attribute :remove_document, :boolean, default: false
   after_save :purge_document, if: :remove_document
 
   private
